@@ -1,6 +1,8 @@
 from django.shortcuts import render,get_object_or_404
 from .models import Project
 from .models import Certificate, Project
+from django.conf import settings
+
 
 def home(request):
     certificates = Certificate.objects.all()
@@ -8,7 +10,8 @@ def home(request):
     
     return render(request, 'home.html', {
         'certificates': certificates,
-        'projects': projects
+        'projects': projects,
+        'MEDIA_URL': settings.MEDIA_URL,
     })
 
 def project_detail(request, id):
